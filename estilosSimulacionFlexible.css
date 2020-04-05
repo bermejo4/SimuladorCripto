@@ -1,0 +1,81 @@
+
+#enmarcacion{
+display: flex;
+background-color: dodgerblue;
+}
+
+#InputDeNumeroDeCampos{
+background-color: rgb(96, 129, 202);
+width: 500px;
+color: white;
+padding:20px;
+margin: 30px;
+}
+
+#InputDeResultados{
+    background-color:  rgb(96, 129, 202);
+    width: 250px;
+    color: white;
+    padding: 30px;
+    margin: 30px;
+    padding-top: 10px;
+}
+
+.campo{
+    margin:5px; 
+    padding: 2px;
+}
+#botonFuncionSegunda{
+    align-content: center;
+    margin-left: 50px;
+    margin-top:50px; 
+    padding: 10px;
+}
+
+#OutputDeDatosIntroducidos{
+    width: 250px;
+    background-color:  rgb(96, 129, 202);
+    color: white;
+    padding: 20px;
+    margin: 30px;
+    padding-top: 10px;
+}
+
+
+.linkReset{
+background-color:red;
+color: white;
+padding: 14px 25px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+}
+.linkVolverInicio{
+    background-color:red;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;  
+}
+
+
+#TituloInputDeResultados{
+    text-align: center;
+}
+
+#TituloOutputDeDatosIntroducidos{
+    text-align: center;
+}
+
+.datoflex{
+    display: flex;
+    flex: 15px;
+    text-align: right;
+}
+
+.botonesResetRetorno{
+    display: flex;
+    align-items: center;
+}

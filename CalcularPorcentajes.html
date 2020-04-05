@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilosCalcularPorcentajes.css">
+    <link rel="stylesheet" href="estilosDeCriptomoneda.css">
+    <link rel="stylesheet" href="estilosSimulacionFlexible.css">
+</head>
+
+<body>
+    <h1 id="titulo">Estudio de Mercado trading para Criptomonedas</h1>
+    <div class="InputNumeroDeDatosAIntroducir">
+        <p>Introduzca el numero de datos que se van a utilizar: <input type="text" id="CampoDeNumeroDeDatos" size="5"> <button onclick="NumeroDeDatos()">Siguiente</button></p>
+        
+    </div>
+    <div class="InputDeCantidades">
+        <div class="primeracolumna">
+            <p id="columna1"></p>
+        </div>
+        <div class="segundacolumna">
+            <p id="columna2"></p>
+        </div>
+        <div class="espacioDeBoton">
+            <button id="BotonAccionador" onclick="calculadoraDePorcentajes()">Calcular</button>
+        </div>
+    </div>
+
+    <div class="espacioDeColumnaDeResultados">
+        <p id="columnaDeResultados"></p>
+        <p id="resultadofinal" style="width: 180px; margin-left: 43%;font-size: 40px;margin-top: 0px; text-align: center"></p>
+    </div>
+    <div class="EnmarqueDinero" style="background-color: rgb(184, 21, 21);">
+            <div class="InputDinero" style="background-color: rgb(192, 186, 186);">
+                <p>Introduzca la cantidad de <select name="tipoDeMoneda" id="tipoDeMoneda">
+                        <option value="$">Dolar($)</option>
+                        <option value="€">Euro(€)</option>
+                        <option value="BNB">Binance Coin (BNB)</option>
+                    </select> : <input type="text" id="campodedinero">
+                    <button id="CalcularEnDinero" onclick="CalcularEnDinero()">Calcular</button>
+                </p>
+            </div>
+            <div class="OutputDinero" style="background-color: rgb(192, 186, 186);">
+                <p id="DineroNuevo"></p>
+                <p id="DineroTotal"></p>
+            </div>
+        </div>
+    <div class="botonesResetRetorno">
+        <a href="InicioCriptomoneda.html" class="linkVolverInicio">Volver al Inicio
+        </a>
+        <a href="CalcularPorcentajes.html" class="linkReset">Reset
+        </a>
+    </div>
+    <script src="scriptFuncionesGeneralesCripto.js"></script>
+    <script>
+        var numero;
+
+        function NumeroDeDatos() {
+            var numero = document.getElementById('CampoDeNumeroDeDatos').value;
+            var i;
+            var lista1 = document.getElementById('columna1');
+            for (i = 0; i < numero; i++) {
+                lista1.innerHTML += "<p>Campo " + "<input type='text' id='nombreDeCriptomoneda"+i+"' size=5>" + " : <input type='text'id='campo1" + i + "' size=12> BNB</p>";
+            }
+            var lista2 = document.getElementById('columna2');
+            for (i = 0; i < numero; i++) {
+                lista2.innerHTML += "<p>Campo " + (i+1) + ":<input type='text'id='campo2" + i + "'> BNB</p>";
+            }
+
+        }
+        function calculadoraDePorcentajes() {
+            var i = 0;
+            var lista3 = document.getElementById('columnaDeResultados');
+            var numero = document.getElementById('CampoDeNumeroDeDatos').value;
+            var stringResult;
+            var array=[];
+            for (i = 0; i < numero; i++) {
+                lista3.innerHTML += "<p id='res" + i + "'></p>";
+                stringResult="Resultado "+document.getElementById('nombreDeCriptomoneda'+i).value+": ";
+                document.getElementById('res' + i).style.color = funcioncolor(calculo(document.getElementById('campo1' + i).value, document.getElementById('campo2' + i).value));
+                document.getElementById('res' + i).innerHTML = stringResult.fontcolor("white")+calculo(document.getElementById('campo1' + i).value, document.getElementById('campo2' + i).value) + "%";
+                array.push(calculo(document.getElementById('campo1' + i).value, document.getElementById('campo2' + i).value));
+            }
+            //for(i=0;i<numero;i++){
+
+           // }
+            calculoDeResultados(array,0);
+        }
+        function calculoDeResultados(array, comision) {
+            var suma = 0;
+            var i;
+            var resultado;
+            for (i = 0; i < array.length; i++) {
+                suma = suma + ((array[i] / 100) * (50 - (50 * (comision / 100))));
+                suma = suma - (suma * (comision / 100))
+            }
+            resultado = (suma * 100) / (50 * array.length);
+            document.getElementById('resultadofinal').style.color = funcioncolor(resultado);
+            document.getElementById('resultadofinal').innerHTML = resultado.toFixed(3) + " %";
+        }
+
+    </script>
+    <h3 style="margin-left: 50px">By: bermejo4</h3>
+    </div>
+    
+    
+</body>
+
+</html>

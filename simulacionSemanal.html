@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilosDeCriptomoneda.css">
+</head>
+<body>
+    <h1 id="titulo">Estudio de Mercado trading para Criptomonedas</h1>
+    <div class="enmarque">
+        <div class="inputDeDatos">
+            <p><h3 id="binanceTitulo">Semana</h3></p>
+            <p class="p">Lunes a Martes: <input type="text" id="lunesmartes" value="1" size="5" > %</p>
+            <p class="p">Martes a Miércoles: <input type="text" id="martesmiercoles" value="2" size="5"> %</p>
+            <p class="p">Miércoles a Jueves: <input type="text" id="miercolesjueves" value="3" size="5"> %</p>
+            <p class="p">Jueves a Viernes: <input type="text" id="juevesviernes" value="4" size="5"> %</p>
+            <p class="p">Viernes a Sábado: <input type="text" id="viernessabado" value="5" size="5"> %</p>
+            <p class="p">Sábado a Domingo: <input type="text" id="sabadodomingo" value="6" size="5"> %</p>
+            <p class="p">Domingo a Lunes: <input type="text" id="domingolunes" value="7" size="5"> %</p>
+            <br>
+            <button onclick="calculoSemanal()" class="botonDeResultados">Resultado Semanal</button>
+        </div>
+        <div class="outputDeResultados">
+            <p class="mostrarresultado"><p>Resultado Semanal:</p> 
+                <p id="resultadofinal"></p>
+            </p>
+        </div>
+        <div class="outputDeDatos">
+            <p class="tituloDatosIntroducidos">Datos Introducidos: </p>
+            <p id="lm"></p>
+            <p id="mx"></p>
+            <p id="xj"></p>
+            <p id="jv"></p>
+            <p id="vs"></p>
+            <p id="sd"></p>
+            <p id="dl"></p>
+        </div>
+        <div id="max_min">
+            <p>El máximo valor es:<p id="maxvalue"></p></p>
+            <p>El mínimo valor es:<p id="minvalue"></p></p>
+        </div>
+    </div>
+    <script>
+    function maxvalue(array){
+        var max=array[0];
+        var i;
+        for(i=0;i<array.length;i++){
+            if(max<=array[i]){
+                max=array[i];
+            }
+        }
+        return max;
+    }
+    function minvalue(array){
+        var min=array[0];
+        var i;
+        for(i=0;i<array.length;i++){
+            if(min>=array[i]){
+                min=array[i];
+            }
+        }
+        return min;
+    }
+    function funcioncolor(numero){
+        if(numero>=0){
+            return "greenyellow";
+        }else{
+            return "deeppink";
+        }
+    }
+    function calculoSemanal(){
+        var lm=document.getElementById("lunesmartes").value;
+        document.getElementById('lm').style.color=funcioncolor(lm);
+        document.getElementById('lm').innerHTML=lm+" %";
+
+        var mx=document.getElementById("martesmiercoles").value;
+        document.getElementById('mx').style.color=funcioncolor(mx);
+        document.getElementById('mx').innerHTML=mx+" %";
+
+        var xj=document.getElementById("miercolesjueves").value;
+        document.getElementById('xj').style.color=funcioncolor(xj);
+        document.getElementById('xj').innerHTML=xj+" %";
+
+        var jv=document.getElementById("juevesviernes").value;
+        document.getElementById('jv').style.color=funcioncolor(jv);
+        document.getElementById('jv').innerHTML=jv+" %";
+
+        var vs=document.getElementById("viernessabado").value;
+        document.getElementById('vs').style.color=funcioncolor(vs);
+        document.getElementById('vs').innerHTML=vs+" %";
+
+        var sd=document.getElementById("sabadodomingo").value;
+        document.getElementById('sd').style.color=funcioncolor(sd);
+        document.getElementById('sd').innerHTML=sd+" %";
+
+        var dl=document.getElementById("domingolunes").value;
+        document.getElementById('dl').style.color=funcioncolor(dl);
+        document.getElementById('dl').innerHTML=dl+" %";
+
+        var arraysemanal= [lm,mx,xj,jv,vs,sd,dl];
+        var resultadoSemanal=0,i;
+        for(i=0;i<7;i++){
+            resultadoSemanal=resultadoSemanal+ (((arraysemanal[i]/100)*50)+50);
+        }
+        resultadoSemanal=(resultadoSemanal*100)/(50*7);
+        resultadoSemanal=resultadoSemanal-100;
+        document.getElementById('resultadofinal').style.color=funcioncolor(resultadoSemanal);
+        document.getElementById('resultadofinal').innerHTML=resultadoSemanal.toFixed(3)+ " %";
+
+        document.getElementById('maxvalue').style.color=funcioncolor(maxvalue(arraysemanal));
+        document.getElementById('maxvalue').innerHTML=maxvalue(arraysemanal)+ " %";
+        document.getElementById('minvalue').style.color=funcioncolor(minvalue(arraysemanal));
+        document.getElementById('minvalue').innerHTML=minvalue(arraysemanal)+ " %";
+        
+        
+    }
+    </script>
+    <a href="InicioCriptomoneda.html">
+        <input type="button" value="Volver al inicio" class="botonVolverInicio">
+    </a> 
+    <footer>
+            <p>By: bermejo4</p>
+    </footer>
+</body>
+</html>

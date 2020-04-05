@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilosDeCriptomoneda.css">
+</head>
+
+<body>
+    <h1 id="titulo">Estudio de Mercado trading para Criptomonedas</h1>
+    <div class="enmarque">
+        <div class="inputDeDatos">
+            <p>
+                <h3 id="binanceTitulo">Binance</h3>
+            </p>
+            <p class="p">Primer resultado: <input type="text" id="bi1" value="1" size="5"> %</p>
+            <p class="p">Segundo resultado: <input type="text" id="bi2" value="2" size="5"> %</p>
+            <p class="p">Tercer resultado: <input type="text" id="bi3" value="3" size="5"> %</p>
+            <p class="p">Cuarto resultado: <input type="text" id="bi4" value="4" size="5"> %</p>
+            <p class="p">Quinto resultado: <input type="text" id="bi5" value="5" size="5"> %</p>
+            <p class="p">Sexto resultado: <input type="text" id="bi6" value="6" size="5"> %</p>
+            <br>
+            <br>
+            <p class="p">Comisión del Trading: <input type="text" id="comision" value="0.075" size="5"> %</p>
+            <button onclick="mifuncion()" class="botonDeResultados">Resultado</button>
+        </div>
+        <div class="outputDeResultados">
+            <p class="mostrarresultado">
+                <p>El resultado es:</p>
+                <p id="resultadofinal"></p>
+            </p>
+        </div>
+        <div class="outputDeDatos">
+            <p class="tituloDatosIntroducidos">Datos Introducidos: </p>
+            <p id="texto1"></p>
+            <p id="texto2"></p>
+            <p id="texto3"></p>
+            <p id="texto4"></p>
+            <p id="texto5"></p>
+            <p id="texto6"></p>
+        </div>
+    </div>
+    <script
+        src="scriptFuncionesGeneralesCripto.js"></script>
+    <script>
+        function mifuncion() {
+
+            var b1 = document.getElementById("bi1").value;
+            document.getElementById('texto1').style.color = funcioncolor(b1);
+            document.getElementById('texto1').innerHTML = b1 + " %";
+
+            var b2 = document.getElementById("bi2").value;
+            document.getElementById('texto2').style.color = funcioncolor(b2);
+            document.getElementById('texto2').innerHTML = b2 + " %";
+
+            var b3 = document.getElementById("bi3").value;
+            document.getElementById('texto3').style.color = funcioncolor(b3);
+            document.getElementById('texto3').innerHTML = b3 + " %";
+
+            var b4 = document.getElementById("bi4").value;
+            document.getElementById('texto4').style.color = funcioncolor(b4);
+            document.getElementById('texto4').innerHTML = b4 + " %";
+
+            var b5 = document.getElementById("bi5").value;
+            document.getElementById('texto5').style.color = funcioncolor(b5);
+            document.getElementById('texto5').innerHTML = b5 + " %";
+
+            var b6 = document.getElementById("bi6").value;
+            document.getElementById('texto6').style.color = funcioncolor(b6);
+            document.getElementById('texto6').innerHTML = b6 + " %";
+
+            var comision = document.getElementById('comision').value;
+            var suma = 0, i;
+            var resultado;
+            var arrayb = [b1, b2, b3, b4, b5, b6];
+            for (i = 0; i < 6; i++) {
+                suma = suma + ((arrayb[i] / 100) * (50 - (50 * (comision / 100))));
+                suma = suma - (suma * (comision / 100));
+            }
+
+            resultado = (suma * 100) / 300;
+
+            document.getElementById('resultadofinal').style.color = funcioncolor(resultado);
+            document.getElementById('resultadofinal').innerHTML = resultado.toFixed(3) + " %";
+
+        }
+
+    </script>
+
+    <a href="InicioCriptomoneda.html">
+        <input type="button" value="Volver al inicio" class="botonVolverInicio">
+    </a>
+
+
+
+    <footer>
+        <p>By: bermejo4</p>
+    </footer>
+</body>
+
+</html>

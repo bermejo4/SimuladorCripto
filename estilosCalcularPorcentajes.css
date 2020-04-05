@@ -1,0 +1,43 @@
+.InputNumeroDeDatosAIntroducir{
+    background-color: rgb(184, 21, 21);
+    border-radius: 15px;
+    padding: 5px;
+    margin: 20px;
+    color: white;
+}
+.InputDeCantidades{
+    display: flex;
+    margin-left: 33.3%;
+}
+#columna1, #columna2{
+    background-color:rgb(192, 186, 186);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    width: 235px;
+}
+
+#columnaDeResultados{
+    background-color: rgb(192, 186, 186);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    width: 200px;
+    margin-left: 43%;
+}
+.espacioDeBoton{
+    margin-top: 10px;
+}
+#BotonAccionador{
+    width: 100px;
+    background-color: rgb(99, 136, 238);
+    color: white;
+    border-radius: 12px;
+}
+#BotonAccionador:hover{
+    color:rgb(99, 136, 238);
+    background-color: white;
+}
+

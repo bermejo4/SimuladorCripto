@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilosDeCriptomoneda.css">
+    <link rel="stylesheet" href="estilosSimulacionFlexible.css">
+
+</head>
+
+<body>
+    <h1 id="titulo">Estudio de Mercado trading para Criptomonedas</h1>
+    <div id="enmarcacion">
+        <div id="InputDeNumeroDeCampos">
+            <p>Introduzca el NÚMERO de resultados recopilados con los que va a trabajar: <input type="text" id="texto"
+                    size="4"></p>
+            <p>Con Comision:<input type="checkbox" id="checkComision" onclick="comision()" size="5"></p>
+            <p id="mostrarcuadro" style="display: none"> Comisión: <input type='text' id='comision' size="5"> %</p>
+            <button onclick="varioscampos()" id="botonVariosCampos">Siguiente</button>
+        </div>
+        <div id="InputDeResultados">
+            <p id="TituloInputDeResultados">Datos Recopilados:</p>
+            <ul id="lista">
+            </ul>
+            <button onclick="funcionsegunda()" id="botonFuncionSegunda">Mostrar Resultado Final</button>
+        </div>
+        <div id="OutputDeDatosIntroducidos">
+            <p id="TituloOutputDeDatosIntroducidos">Datos introducidos</p>
+            <ul id="listadatos">
+            </ul>
+            <p><br>
+                <p id="imprimircomision"></p>
+            </p>
+        </div>
+    </div>
+    <div>
+        <p id="resultadofinal"
+            style="width:350px; display: block; margin-left: auto;margin-right: auto; margin-top: 10px; text-align: center"></p>
+    </div>
+    <div class="EnmarqueDinero">
+        <div class="InputDinero">
+            <p>Introduzca la cantidad de <select name="tipoDeMoneda" id="tipoDeMoneda">
+                    <option value="$">Dolar($)</option>
+                    <option value="€">Euro(€)</option>
+                    <option value="BNB">Binance Coin (BNB)</option>
+                </select> : <input type="text" id="campodedinero">
+                <button id="CalcularEnDinero" onclick="CalcularEnDinero()">Calcular</button>
+            </p>
+        </div>
+        <div class="OutputDinero">
+            <p id="DineroNuevo"></p>
+            <p id="DineroTotal"></p>
+        </div>
+    </div>
+    <div class="botonesResetRetorno">
+        <a href="InicioCriptomoneda.html"
+            class="linkVolverInicio">Volver al Inicio
+        </a>
+        <a href="simulacionflexible.html"
+            class="linkReset">Reset
+        </a>
+    </div>
+
+
+    <script src="scriptFuncionesGeneralesCripto.js">
+    </script>
+
+
+
+    <script>
+        var numerodecampos;
+        var comision;
+
+        function comision() {
+            var CheckBox = document.getElementById('checkComision');
+            var mostrarcuadro = document.getElementById('mostrarcuadro');
+            if (CheckBox.checked == true) {
+                mostrarcuadro.style.display = "block";
+            } else {
+                mostrarcuadro.style.display = "none";
+            }
+        }
+
+        function varioscampos() {
+            document.getElementById('botonVariosCampos').disabled = true;
+            var num = document.getElementById('texto').value;
+            var i;
+            var lista = document.getElementById('lista');
+            for (i = 0; i < num; i++) {
+                lista.innerHTML += "<li class='campo'>Dato " + i + " : <input type='text' id='campo" + i + "' size='5'> %</li>";
+            }
+            numerodecampos = num;
+            if (document.getElementById('comision').value == "") {
+                comision = 0;
+            } else {
+                comision = document.getElementById('comision').value;
+            }
+
+        }
+        function funcionsegunda() {
+            document.getElementById('botonFuncionSegunda').disabled = true;
+            var i;
+            var array = [document.getElementById('campo0').value];
+            for (i = 1; i < numerodecampos; i++) {
+                array.push(document.getElementById('campo' + i).value);
+            }
+            imprimirdatos(array, comision);
+            calculoDeResultados(array);
+
+        }
+        function imprimirdatos(array, comision) {
+            var listadatos = document.getElementById('listadatos');
+            for (i = 0; i < numerodecampos; i++) {
+                listadatos.innerHTML += "<li class='datoflex'>"+ "<p id='dato" + i + "'></p></li>";
+            }
+            for (i = 0; i < array.length; i++) {
+                document.getElementById('dato' + i).innerHTML = "Dato "+ i + ": " + array[i].fontcolor(funcioncolor(array[i])) + ' %'.fontcolor(funcioncolor(array[i]));
+            }
+            document.getElementById('imprimircomision').innerHTML = '* Comisión: ' + comision + ' %';
+        }
+        function calculoDeResultados(array) {
+            var suma = 0;
+            var i;
+            var resultado;
+            for (i = 0; i < array.length; i++) {
+                suma = suma + ((array[i] / 100) * (50 - (50 * (comision / 100))));
+                suma = suma - (suma * (comision / 100))
+            }
+            resultado = (suma * 100) / (50 * array.length);
+            document.getElementById('resultadofinal').style.color = funcioncolor(resultado);
+            document.getElementById('resultadofinal').innerHTML = resultado.toFixed(3) + " %";
+        }
+    </script>
+
+    <footer>
+        <p>By: bermejo4</p>
+    </footer>
+</body>
+
+</html>
